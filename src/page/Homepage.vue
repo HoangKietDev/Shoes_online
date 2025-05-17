@@ -8,8 +8,7 @@ Navbar
 <template>
   <!-- type checking and auto-completion enabled -->
   <header>
-    <!-- <Navbar /> -->
-    <div class="block text-red-50 bg-red-500">This should show at ≥640px</div>
+    <Navbar />
   </header>
   <main></main>
 </template>
