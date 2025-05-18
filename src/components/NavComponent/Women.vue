@@ -7,9 +7,10 @@
         <li>
           <span class="font-semibold mb-2 inline-block">Featured</span>
           <p><a href="">New Releases</a></p>
-          <p><a href="">Best Sellers</a></p>
-          <p><a href="">Retro Running Sneakers</a></p>
+          <p><a href="">Bestseller</a></p>
+          <p><a href="">Nike Style By</a></p>
           <p><a href="">Air Max Home</a></p>
+          <p><a href="">Mother's Day Gifts</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Shoes</span>
@@ -17,10 +18,8 @@
           <p><a href="">Lifestyle</a></p>
           <p><a href="">Jordan</a></p>
           <p><a href="">Running</a></p>
-          <p><a href="">Football</a></p>
-          <p><a href="">Basketball</a></p>
           <p><a href="">Training and Gym</a></p>
-          <p><a href="">Skateboarding</a></p>
+          <p><a href="">Football</a></p>
           <p><a href="">Nike By You</a></p>
         </li>
         <li>
@@ -28,19 +27,22 @@
           <p><a href="">All Clothing</a></p>
           <p><a href="">Hoodies and Sweatshirts</a></p>
           <p><a href="">Jackets</a></p>
-          <p><a href="">Trousers and Tights</a></p>
-          <p><a href="">Tracksuits</a></p>
+          <p><a href="">Trousers</a></p>
+          <p><a href="">Leggings</a></p>
+          <p><a href="">Matching Sets</a></p>
           <p><a href="">Tops and T-Shirts</a></p>
           <p><a href="">Shorts</a></p>
-          <p><a href="">Kits and Jerseys</a></p>
+          <p><a href="">Sports Bras</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Discover Sport</span>
+          <p><a href="">Training & Gym</a></p>
           <p><a href="">Running</a></p>
           <p><a href="">Football</a></p>
           <p><a href="">Basketball</a></p>
-          <p><a href="">Training and Gym</a></p>
           <p><a href="">Tennis</a></p>
+          <p><a href="">Dance</a></p>
+          <p><a href="">Yoga</a></p>
           <p><a href="">Golf</a></p>
         </li>
         <li>

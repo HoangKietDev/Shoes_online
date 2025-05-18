@@ -1,23 +1,34 @@
 <script setup lang="ts">
 import { provide, ref } from 'vue'
-// import Help from './NavComponets/Help.vue'
+import Help from './NavComponent/Help.vue'
 import NewAndFeatured from './NavComponent/NewAndFeatured.vue'
-// import Men from './NavComponets/Men.vue'
-// import Women from './NavComponets/Women.vue'
-// import Kids from './NavComponets/Kids.vue'
+import Men from './NavComponent/Men.vue'
+import Women from './NavComponent/Women.vue'
+import Kids from './NavComponent/Kids.vue'
 import Hamburger from './NavComponent/Hamburger.vue'
 
 // Track which dropdown is active (null | string)
 const activeDropdown = ref<string | null>(null)
 
+let hideTimeout: ReturnType<typeof setTimeout> | null = null
+
 const showDropdown = (menu: string) => {
+  // activeDropdown.value = menu
+  if (hideTimeout) clearTimeout(hideTimeout)
+  // Nếu đang mở dropdown khác → đổi ngay
   activeDropdown.value = menu
 }
-
 const hideDropdown = () => {
-  setTimeout(() => {
-    const isOverDropdown = document.querySelector('.dropdown-menu:hover')
-    if (!isOverDropdown) {
+  // setTimeout(() => {
+  //   const isOverDropdown = document.querySelector('.dropdown-menu:hover')
+  //   if (!isOverDropdown) {
+  //     activeDropdown.value = null
+  //   }
+  // }, 50)
+  hideTimeout = setTimeout(() => {
+    const dropdownHovered = document.querySelector('.dropdown-menu:hover')
+    const menuHovered = document.querySelector('.nav-item:hover') // class bạn đặt cho <li>
+    if (!dropdownHovered && !menuHovered) {
       activeDropdown.value = null
     }
   }, 50)
@@ -25,10 +36,20 @@ const hideDropdown = () => {
 
 // Hamburger toggle state
 const showHam = ref(false)
-
 const toggleHam = (): void => {
   showHam.value = !showHam.value
 }
+
+interface NavItem {
+  label: string
+  enter: string
+}
+const navItems: NavItem[] = [
+  { label: 'New and Featured', enter: 'newAndFeatured' },
+  { label: 'Men', enter: 'men' },
+  { label: 'Women', enter: 'women' },
+  { label: 'Kids', enter: 'kids' },
+]
 
 // Provide for child components
 provide('showHam', showHam)
@@ -41,8 +62,8 @@ provide('toggleHam', toggleHam)
   </div>
   <div class="overflow-y-visible">
     <div class="hidden md:block bg-[#f5f5f5] w-full">
-      <div class="max-w-[1920px] mx-auto flex items-center justify-between h-[36px]">
-        <div class="flex items-center gap-6 px-2">
+      <div class="max-w-[1920px] mx-auto flex items-center justify-between h-[36px] px-12">
+        <div class="flex items-center gap-6">
           <a href=""
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,13 +89,13 @@ provide('toggleHam', toggleHam)
           ></a>
         </div>
         <ul
-          class="flex items-center space-x-1 text-[12px]/[18px] tracking-normal gap-[0.5rem] font-medium"
+          class="flex items-center space-x-1 text-[12px]/[18px] tracking-normal gap-[0.5rem] font-semibold"
         >
           <li class="hover:opacity-50"><a href="">Find a Store</a></li>
           <li class="text-black">|</li>
           <div>
             <li
-              class="hover:opacity-50"
+              class="hover:opacity-50 nav-item"
               @mouseenter="showDropdown('help')"
               @mouseleave="hideDropdown"
             >
@@ -84,7 +105,7 @@ provide('toggleHam', toggleHam)
               v-if="activeDropdown === 'help'"
               @mouseenter="showDropdown('help')"
               @mouseleave="hideDropdown"
-              class="dropdown-menu relative translate-y-2 translate-x-[-10rem] z-100"
+              class="dropdown-menu relative translate-y-2 translate-x-[-10rem] z-100 block"
             >
               <Help />
             </div>
@@ -102,7 +123,7 @@ provide('toggleHam', toggleHam)
 
     <nav class="bg-white shadow-md w-full">
       <!-- Remove shadow-->
-      <div class="container max-w-[1920px] px-6 mx-auto h-[60px] flex logo">
+      <div class="container max-w-[1920px] px-12 mx-auto h-[60px] flex logo">
         <a href="" class="cursor-pointer"
           ><svg
             class=""
@@ -118,23 +139,16 @@ provide('toggleHam', toggleHam)
         <!-- <div class="block"> CHECKPOINT -->
         <div class="flex-1 flex justify-center items-center translate-x-5 lg:translate-x-20 z-[5]">
           <ul
-            class="items-center justify-center gap-5 text-[16px]/[28px] tracking-normal hidden font-medium"
+            class="items-center justify-center text-[16px]/[28px] tracking-normal hidden font-bold md:flex h-full"
           >
             <li
-              class="nav-item"
-              @mouseenter="showDropdown('newAndFeatured')"
+              v-for="item in navItems"
+              :key="index"
+              class="nav-item hover:border-b-2 border-transparent hover:border-black h-full flex items-center px-4"
+              @mouseenter="showDropdown(item.enter)"
               @mouseleave="hideDropdown"
             >
-              New and Featured
-            </li>
-            <li class="nav-item" @mouseenter="showDropdown('men')" @mouseleave="hideDropdown">
-              Men
-            </li>
-            <li class="nav-item" @mouseenter="showDropdown('women')" @mouseleave="hideDropdown">
-              Women
-            </li>
-            <li class="nav-item" @mouseenter="showDropdown('kids')" @mouseleave="hideDropdown">
-              Kids
+              {{ item.label }}
             </li>
           </ul>
         </div>
@@ -198,7 +212,7 @@ provide('toggleHam', toggleHam)
               <path
                 stroke="currentColor"
                 stroke-width="1.5"
-                d="M3.75 21v-3a3.75 3.75 0 013.75-3.75h9A3.75 3.75 0 0120.25 18v3M12 3.75a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5z"
+                d="M16.794 3.75c1.324 0 2.568.516 3.504 1.451a4.96 4.96 0 010 7.008L12 20.508l-8.299-8.299a4.96 4.96 0 010-7.007A4.923 4.923 0 017.205 3.75c1.324 0 2.568.516 3.504 1.451l.76.76.531.531.53-.531.76-.76a4.926 4.926 0 013.504-1.451"
               ></path>
             </svg>
           </a>
@@ -219,7 +233,7 @@ provide('toggleHam', toggleHam)
               ></path></svg
           ></a>
 
-          <button class="ham block hover:bg-[#CACACB] rounded-full p-1" @click="toggleHam">
+          <button class="block md:hidden hover:bg-[#CACACB] rounded-full p-1" @click="toggleHam">
             <svg
               aria-hidden="true"
               focusable="false"
@@ -242,41 +256,65 @@ provide('toggleHam', toggleHam)
     </nav>
   </div>
   <div class="relative">
-    <div
-      v-if="activeDropdown === 'newAndFeatured'"
-      @mouseenter="showDropdown('newAndFeatured')"
-      @mouseleave="hideDropdown"
-      class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+    <Transition
+      enter-active-class="transition ease-out duration-500"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
     >
-      <NewAndFeatured />
-    </div>
+      <div
+        v-if="activeDropdown === 'newAndFeatured'"
+        @mouseenter="showDropdown('newAndFeatured')"
+        @mouseleave="hideDropdown"
+        class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+      >
+        <NewAndFeatured />
+      </div>
+    </Transition>
 
-    <div
-      v-if="activeDropdown === 'men'"
-      @mouseenter="showDropdown('men')"
-      @mouseleave="hideDropdown"
-      class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+    <Transition
+      enter-active-class="transition ease-out duration-500"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
     >
-      <Men />
-    </div>
+      <div
+        v-if="activeDropdown === 'men'"
+        @mouseenter="showDropdown('men')"
+        @mouseleave="hideDropdown"
+        class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+      >
+        <Men />
+      </div>
+    </Transition>
 
-    <div
-      v-if="activeDropdown === 'women'"
-      @mouseenter="showDropdown('women')"
-      @mouseleave="hideDropdown"
-      class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+    <Transition
+      enter-active-class="transition ease-out duration-500"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
     >
-      <Women />
-    </div>
+      <div
+        v-if="activeDropdown === 'women'"
+        @mouseenter="showDropdown('women')"
+        @mouseleave="hideDropdown"
+        class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+      >
+        <Women />
+      </div>
+    </Transition>
 
-    <div
-      v-if="activeDropdown === 'kids'"
-      @mouseenter="showDropdown('kids')"
-      @mouseleave="hideDropdown"
-      class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+    <Transition
+      enter-active-class="transition ease-out duration-500"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
     >
-      <Kids />
-    </div>
+      <div
+        v-if="activeDropdown === 'kids'"
+        @mouseenter="showDropdown('kids')"
+        @mouseleave="hideDropdown"
+        class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+      >
+        <Kids />
+      </div>
+    </Transition>
   </div>
 </template>
 

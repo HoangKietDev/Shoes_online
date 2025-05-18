@@ -6,7 +6,7 @@
       <ul class="flex space-x-20">
         <li>
           <span class="font-semibold mb-2 inline-block">Featuredddd</span>
-          <p class="font-semibold"><a href="">Shop All New Arrivals</a></p>
+          <p><a href="">Shop All New Arrivals</a></p>
           <p><a href="">Best Sellers</a></p>
           <p><a href="">SNKRS Launch Calendar</a></p>
           <p><a href="">Air Max Home</a></p>
@@ -55,7 +55,7 @@ span {
 p {
   font-size: 14px;
   color: #000;
-  opacity: 60%;
+  opacity: 50%;
   margin-bottom: 5px;
 }
 p:hover {
