@@ -218,7 +218,7 @@ const backButtonText = computed(() => {
 })
 </script>
 <template>
-  <div v-if="showHam">
+  <div v-if="showHam" class="block md:hidden">
     <div class="fixed bg-black w-full h-full opacity-40 z-90"></div>
     <div class="absolute top-0 right-0 w-[320px] h-full bg-white z-100 overflow-y-scroll">
       <!-- BACK-->

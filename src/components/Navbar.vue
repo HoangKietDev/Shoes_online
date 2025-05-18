@@ -13,18 +13,10 @@ const activeDropdown = ref<string | null>(null)
 let hideTimeout: ReturnType<typeof setTimeout> | null = null
 
 const showDropdown = (menu: string) => {
-  // activeDropdown.value = menu
   if (hideTimeout) clearTimeout(hideTimeout)
-  // Nếu đang mở dropdown khác → đổi ngay
   activeDropdown.value = menu
 }
 const hideDropdown = () => {
-  // setTimeout(() => {
-  //   const isOverDropdown = document.querySelector('.dropdown-menu:hover')
-  //   if (!isOverDropdown) {
-  //     activeDropdown.value = null
-  //   }
-  // }, 50)
   hideTimeout = setTimeout(() => {
     const dropdownHovered = document.querySelector('.dropdown-menu:hover')
     const menuHovered = document.querySelector('.nav-item:hover') // class bạn đặt cho <li>
@@ -57,9 +49,21 @@ provide('toggleHam', toggleHam)
 </script>
 
 <template>
-  <div class="block hamNav" :class="showHam ? 'block' : 'hidden'">
-    <Hamburger />
-  </div>
+  <Transition
+    enter-active-class="transition transform duration-300 ease-out"
+    enter-from-class="translate-x-full opacity-0"
+    enter-to-class="translate-x-0 opacity-100"
+    leave-active-class="transition transform duration-300 ease-in"
+    leave-from-class="translate-x-0 opacity-100"
+    leave-to-class="translate-x-full opacity-0"
+  >
+    <div
+      v-if="showHam"
+      class="fixed inset-0 z-50 shadow-lg"
+    >
+      <Hamburger/>
+    </div>
+  </Transition>
   <div class="overflow-y-visible">
     <div class="hidden md:block bg-[#f5f5f5] w-full">
       <div class="max-w-[1920px] mx-auto flex items-center justify-between h-[36px] px-12">
@@ -265,8 +269,8 @@ provide('toggleHam', toggleHam)
         v-if="activeDropdown === 'newAndFeatured'"
         @mouseenter="showDropdown('newAndFeatured')"
         @mouseleave="hideDropdown"
-        class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
-      >
+        class="dropdown-menu absolute left-0 w-full"
+      > 
         <NewAndFeatured />
       </div>
     </Transition>
