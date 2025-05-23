@@ -57,11 +57,8 @@ provide('toggleHam', toggleHam)
     leave-from-class="translate-x-0 opacity-100"
     leave-to-class="translate-x-full opacity-0"
   >
-    <div
-      v-if="showHam"
-      class="fixed inset-0 z-50 shadow-lg"
-    >
-      <Hamburger/>
+    <div v-if="showHam" class="fixed inset-0 z-50 shadow-lg">
+      <Hamburger />
     </div>
   </Transition>
   <div class="overflow-y-visible">
@@ -147,7 +144,7 @@ provide('toggleHam', toggleHam)
           >
             <li
               v-for="item in navItems"
-              :key="index"
+              :key="item.label"
               class="nav-item hover:border-b-2 border-transparent hover:border-black h-full flex items-center px-4"
               @mouseenter="showDropdown(item.enter)"
               @mouseleave="hideDropdown"
@@ -269,8 +266,8 @@ provide('toggleHam', toggleHam)
         v-if="activeDropdown === 'newAndFeatured'"
         @mouseenter="showDropdown('newAndFeatured')"
         @mouseleave="hideDropdown"
-        class="dropdown-menu absolute left-0 w-full"
-      > 
+        class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md"
+      >
         <NewAndFeatured />
       </div>
     </Transition>
