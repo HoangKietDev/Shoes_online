@@ -59,6 +59,6 @@ const myMessages = [
     <TrendingSection />
     <LatestSection />
     <ImageScroll :iconImages="shopByIconImages" title='Shop by Icons'/>
-    <ImageScroll :sportImages="shopBySportImages" title='Shop by Sports'/>
+    <ImageScroll :sportImages="shopBySportImages" title='Shop by Sport'/>
     <Footer></Footer>
 </template>

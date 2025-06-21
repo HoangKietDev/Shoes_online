@@ -44,7 +44,7 @@ onUnmounted(() => {
           {{ props.messages[currentMessageIndex].title }}
         </p>
         <a href="#" class="text-xs font-bold text-black cursor-pointer underline">
-          {{ props.messages[currentMessageIndex].text }}
+          {{ props.messages[currentMessageIndex]?.text }}
         </a>
       </div>
     </Transition>

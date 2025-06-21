@@ -1,6 +1,7 @@
-import LastestSection from '@/components/LastestSection.vue'
+
 import Home1 from '@/page/Home1.vue'
 import Homepage from '@/page/Homepage.vue'
+import ListProduct from '@/page/ListProduct.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -17,10 +18,10 @@ const router = createRouter({
       component: Homepage,
     },
     {
-      path: '/cute',
-      name: 'cute',
-      component: LastestSection,
-    }
+      path: '/shoe',
+      name: 'shoe',
+      component: ListProduct,
+    },
   ],
 })
 
