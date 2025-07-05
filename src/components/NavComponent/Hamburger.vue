@@ -9,7 +9,7 @@ const currentGrandparent = ref(null)
 const currentParent = ref(null)
 
 const navigation = {
-  'New and Featured': {
+  'New': {
     subCategories: {
       Featured: {
         children: [

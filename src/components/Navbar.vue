@@ -37,7 +37,7 @@ interface NavItem {
   enter: string
 }
 const navItems: NavItem[] = [
-  { label: 'New and Featured', enter: 'newAndFeatured' },
+  { label: 'New', enter: 'new' },
   { label: 'Men', enter: 'men' },
   { label: 'Women', enter: 'women' },
   { label: 'Kids', enter: 'kids' },
@@ -164,7 +164,7 @@ provide('toggleHam', toggleHam)
   <div class="relative">
     <Transition enter-active-class="transition ease-out duration-500" enter-from-class="opacity-0 -translate-y-4"
       enter-to-class="opacity-100 translate-y-0">
-      <div v-if="activeDropdown === 'newAndFeatured'" @mouseenter="showDropdown('newAndFeatured')"
+      <div v-if="activeDropdown === 'new'" @mouseenter="showDropdown('new')"
         @mouseleave="hideDropdown" class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md">
         <NewAndFeatured />
       </div>

@@ -5,7 +5,7 @@
     <div class="flex justify-center items-center h-full">
       <ul class="flex space-x-20">
         <li>
-          <span class="font-semibold mb-2 inline-block">Featuredddd</span>
+          <span class="font-semibold mb-2 inline-block">Feature</span>
           <p><a href="">Shop All New Arrivals</a></p>
           <p><a href="">Best Sellers</a></p>
           <p><a href="">SNKRS Launch Calendar</a></p>
