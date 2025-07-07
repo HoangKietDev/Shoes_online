@@ -1,50 +1,10 @@
 <script setup lang="ts">
+import { CATEGORIES, COLORSLIST, PRODUCTS, SORTOPTIONS, SIZELIST } from '@/constant/productlist';
 import { ref, onMounted, onUnmounted, reactive } from 'vue'
-
-const category = [
-    { name: 'Running', count: 100 },
-    { name: 'Baseketball', count: 50 },
-    { name: 'Football', count: 30 },
-    { name: 'Skateboarding', count: 20 },
-    { name: 'Golf', count: 20 },
-    { name: 'Tennis', count: 20 },
-    { name: 'Athletics', count: 20 },
-    { name: 'Walking', count: 20 },
-    { name: 'Boots', count: 20 },
-    { name: 'Casual', count: 20 },
-    { name: 'Lifestyle', count: 20 },
-    { name: 'Sandals', count: 20 },
-    { name: 'Accessories', count: 20 }
-];
-const colorList = [
-    { name: 'Black', hex: '#000000' },
-    { name: 'White', hex: '#FFFFFF' },
-    { name: 'Red', hex: '#FF0000' },
-    { name: 'Blue', hex: '#0000FF' },
-    { name: 'Green', hex: '#00FF00' },
-    { name: 'Yellow', hex: '#FFFF00' },
-    { name: 'Pink', hex: '#FFC0CB' },
-    { name: 'Gray', hex: '#808080' },
-    { name: 'Brown', hex: '#8B4513' },
-    { name: 'Purple', hex: '#800080' },
-    { name: 'Orange', hex: '#FFA500' },
-    { name: 'Cyan', hex: '#00FFFF' }
-]
-const sortOptions = [
-    { label: 'Price: Low to High', value: 'price_low_high' },
-    { label: 'Price: High to Low', value: 'price_high_low' },
-    { label: 'Newest', value: 'newest' },
-    { label: 'Best Selling', value: 'best_selling' }
-]
-
-const sizeList = [
-    1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8,
-    8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5,
-    15, 15.5, 16, 16.5, 17, 17.5, 18
-]
 
 const isScrolled = ref(false)
 const showFilter = ref(true)
+const showMobileFilter = ref(false)
 const dropdownStates = reactive({
     sale: false,
     gender: false,
@@ -54,7 +14,7 @@ const dropdownStates = reactive({
     type: false,
     color: false,
     size: false,
-    sort: false
+    sort: false,
 })
 
 const toggleDropdown = (key: keyof typeof dropdownStates) => {
@@ -73,18 +33,20 @@ onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
 })
 
+
+
 </script>
 
 <template>
     <div class="mx-0 md:mx-12">
-        <div class="px-4 flex justify-between items-center py-3 my-3 sticky top-0 bg-white z-10">
+        <div class="px-4 md:px-0 flex justify-between items-center py-3 my-3 sticky top-0 bg-white z-10">
             <div class="font-medium transition-all duration-300 ease-in-out" :class="[
                 isScrolled ? 'text-2xl' : 'text-3xl',
             ]">
                 All Shoes (300)
             </div>
             <div class="flex justify-between items-center">
-                <div class="px-8 flex items-center cursor-pointer" @click="showFilter = !showFilter">
+                <div class="hidden px-8 md:flex items-center cursor-pointer" @click="showFilter = !showFilter">
                     <div class="text-xl px-2 font-medium"> {{ showFilter ? 'Hide Filter' : 'Show Filter' }}</div>
                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -95,6 +57,22 @@ onUnmounted(() => {
                                 fill="#000000"></path>
                         </g>
                     </svg>
+                </div>
+                <div @click="showMobileFilter = true"
+                    class=" flex md:hidden items-center px-4 py-2 text-black text-lg font-medium bg-white rounded-4xl border border-[rgba(0,0,0,0.2)] cursor-pointer">
+                    <p>Filter</p>
+                    <div class="mx-2 ">
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M15 10.5A3.502 3.502 0 0 0 18.355 8H21a1 1 0 1 0 0-2h-2.645a3.502 3.502 0 0 0-6.71 0H3a1 1 0 0 0 0 2h8.645A3.502 3.502 0 0 0 15 10.5zM3 16a1 1 0 1 0 0 2h2.145a3.502 3.502 0 0 0 6.71 0H21a1 1 0 1 0 0-2h-9.145a3.502 3.502 0 0 0-6.71 0H3z"
+                                    fill="#000000"></path>
+                            </g>
+                        </svg>
+                    </div>
                 </div>
 
                 <div class="hidden md:block">
@@ -119,7 +97,7 @@ onUnmounted(() => {
                         <div v-if="dropdownStates.sort"
                             class="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-20">
                             <ul>
-                                <li v-for="option in sortOptions" :key="option.value"
+                                <li v-for="option in SORTOPTIONS" :key="option.value"
                                     class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-lg">
                                     {{ option.label }}
                                 </li>
@@ -129,14 +107,15 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <div class="flex pt-1">
-            <div class="hidden md:block bg-white overflow-y-auto sticky top-20 transition-all ease-in-out duration-300" :class="[
-                isScrolled ? 'max-h-220' : 'max-h-175',
-                showFilter
-                    ? 'translate-x-0 opacity-100 visible w-1/7 pr-2 mr-6'
-                    : '-translate-x-full opacity-0 invisible w-0'
-            ]">
-                <div v-for="item in category" :key="item.name" class="mb-2">
+        <div class=" flex pt-1">
+            <div class="hidden md:block bg-white overflow-y-auto sticky top-20 transition-all ease-in-out duration-300"
+                :class="[
+                    isScrolled ? 'max-h-220' : 'max-h-175',
+                    showFilter
+                        ? 'translate-x-0 opacity-100 visible w-1/7 pr-2 mr-6'
+                        : '-translate-x-full opacity-0 invisible w-0'
+                ]">
+                <div v-for="item in CATEGORIES" :key="item.name" class="mb-2">
                     <div class="flex justify-between items-center cursor-pointer">
                         <span class="text-lg font-medium">{{ item.name }}</span>
                         <span class="text-gray-500">({{ item.count }})</span>
@@ -250,7 +229,7 @@ onUnmounted(() => {
                     <div class="overflow-hidden transition-all duration-300 ease-in-out"
                         :class="dropdownStates.color ? 'max-h-80 opacity-100 translate-y-0 mb-4' : 'max-h-0 opacity-0 -translate-y-2 mb-0'">
                         <div class="grid grid-cols-3 gap-4 pt-4">
-                            <div v-for="color in colorList" :key="color.name"
+                            <div v-for="color in COLORSLIST" :key="color.name"
                                 class="flex flex-col items-center cursor-pointer">
                                 <div class="w-8 h-8 rounded-full border border-gray-300 mb-1"
                                     :style="{ backgroundColor: color.hex }"></div>
@@ -328,7 +307,7 @@ onUnmounted(() => {
                     <div class="overflow-hidden transition-all duration-300 ease-in-out"
                         :class="dropdownStates.size ? 'max-h-180 opacity-100 translate-y-0 mb-4' : 'max-h-0 opacity-0 -translate-y-2 mb-0'">
                         <div class="grid grid-cols-4 gap-3 mt-4">
-                            <button v-for="size in sizeList" :key="size"
+                            <button v-for="size in SIZELIST" :key="size"
                                 class="border border-gray-300 rounded-md py-2 text-base font-medium hover:bg-gray-100 transition">
                                 {{ size }}
                             </button>
@@ -494,156 +473,213 @@ onUnmounted(() => {
                 </div>
 
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 transition-all duration-500 ease-in-out "
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 transition-all duration-500 ease-in-out w-full"
                 :class="showFilter ? 'w-6/7' : 'w-full'">
-                <div class=" bg-white h-full cursor-pointer">
+                <div v-for="(product, index) in PRODUCTS" :key="index" class="bg-white h-full cursor-pointer group">
                     <div class="aspect-square overflow-hidden">
-                        <img src="../assets/images/ShoeList/AIR+JORDAN+3+RETRO.avif" alt="Product Image"
-                            class="w-full h-full object-cover">
+                        <img :src="product.image" alt="Product Image"
+                            class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110" />
                     </div>
                     <div class="px-4 md:mx-0">
                         <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                        <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                        <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                        <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                        <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f77e6165-4d2e-4919-b0a9-4a7e6e0e1dbf/JORDAN+CMFT+ERA.png"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                        <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                        <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                        <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                        <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                        <p class="text-lg font-semibold py-2">$99.99</p>
+                        <h3 class="text-lg font-semibold">{{ product.title }}</h3>
+                        <h3 class="text-lg font-medium text-gray-500">{{ product.category }}</h3>
+                        <h3 class="text-lg font-medium text-gray-500">{{ product.color }}</h3>
+                        <p class="text-lg font-semibold py-2">{{ product.price }}</p>
                     </div>
                 </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://cdn.thewirecutter.com/wp-content/media/2024/11/runningshoes-2048px-09528.jpg?auto=webp&quality=75&width=1024"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                    <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                    <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                    <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                    <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                    <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f77e6165-4d2e-4919-b0a9-4a7e6e0e1dbf/JORDAN+CMFT+ERA.png"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-
-                    <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                    <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                    <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                    <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                    <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://cdn.thewirecutter.com/wp-content/media/2024/11/runningshoes-2048px-09528.jpg?auto=webp&quality=75&width=1024"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                    <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                    <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                    <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                    <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                    <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f77e6165-4d2e-4919-b0a9-4a7e6e0e1dbf/JORDAN+CMFT+ERA.png"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                    <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                    <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                    <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                    <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                    <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://cdn.thewirecutter.com/wp-content/media/2024/11/runningshoes-2048px-09528.jpg?auto=webp&quality=75&width=1024"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                    <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                    <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                    <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                    <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                    <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>  
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f77e6165-4d2e-4919-b0a9-4a7e6e0e1dbf/JORDAN+CMFT+ERA.png"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                        <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                        <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                        <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                        <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                        <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f77e6165-4d2e-4919-b0a9-4a7e6e0e1dbf/JORDAN+CMFT+ERA.png"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                        <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                        <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                        <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                        <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                        <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://cdn.thewirecutter.com/wp-content/media/2024/11/runningshoes-2048px-09528.jpg?auto=webp&quality=75&width=1024"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-                    <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                    <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                    <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                    <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                    <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <div class=" bg-white h-full">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f77e6165-4d2e-4919-b0a9-4a7e6e0e1dbf/JORDAN+CMFT+ERA.png"
-                            alt="Product Image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="px-4 md:mx-0">
-
-                    <h3 class="text-lg font-semibold text-red-500 mt-4">Just In</h3>
-                    <h3 class="text-lg font-semibold">Nike Air Max Dn</h3>
-                    <h3 class="text-lg font-medium text-gray-500">Men's Shoes</h3>
-                    <h3 class="text-lg font-medium text-gray-500">1 color</h3>
-                    <p class="text-lg font-semibold py-2">$99.99</p>
-                    </div>
-                </div>
-                <!-- Repeat for more products -->
             </div>
         </div>
     </div>
+
+    <!-- Modal filter mobile -->
+    <Teleport to="body">
+        <transition enter-active-class="transition-all duration-300 ease-in-out"
+            leave-active-class="transition-all duration-300 ease-in-out" enter-from-class="translate-y-full opacity-0"
+            enter-to-class="translate-y-0 opacity-100" leave-from-class="translate-y-0 opacity-100"
+            leave-to-class="translate-y-full opacity-0">
+            <div v-if="showMobileFilter" class="fixed inset-0 z-50 flex flex-col bg-white w-full h-full md:hidden">
+                <div class="flex justify-between items-center p-4 border-b">
+                    <span class="text-xl font-semibold">Filter</span>
+                    <button @click="showMobileFilter = false" class="text-2xl px-2">&times;</button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-4">
+                    <div class="">
+                        <span class="text-lg font-semibold">Gender</span>
+                        <ul class="">
+                            <div class=" flex items-center pt-2">
+                                <input id="gender-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="gender-checkbox-1"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Men</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="gender-checkbox-2" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="gender-checkbox-2"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Women</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="gender-checkbox-3" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="gender-checkbox-3"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Unisex</label>
+                            </div>
+                        </ul>
+                    </div>
+                    <hr class="mt-8 mb-4 text-gray-300">
+                    <div class="">
+                        <span class="text-lg font-semibold">Sale & Offers</span>
+                        <ul class="">
+                            <div class=" flex items-center pt-2">
+                                <input id="sale-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black ">
+                                <label for="sale-checkbox-1"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">See
+                                    Price In
+                                    Bag</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="sale-checkbox-2" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="sale-checkbox-2"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Sale</label>
+                            </div>
+                        </ul>
+                    </div>
+                    <hr class="mt-8 mb-4 text-gray-300">
+                    <div class="">
+                        <span class="text-lg font-semibold">Colour</span>
+                        <ul class="">
+                            <div class="grid grid-cols-3 gap-4 pt-4">
+                                <div v-for="color in COLORSLIST" :key="color.name"
+                                    class="flex flex-col items-center cursor-pointer">
+                                    <div class="w-8 h-8 rounded-full border border-gray-300 mb-1"
+                                        :style="{ backgroundColor: color.hex }"></div>
+                                    <span class="text-sm text-gray-700">{{ color.name }}</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                    <hr class="mt-8 mb-4 text-gray-300">
+
+                    <div class="">
+                        <span class="text-lg font-semibold">Shoes Weight</span>
+                        <ul class="">
+                            <div class=" flex items-center pt-2">
+                                <input id="hight-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="hight-checkbox-1"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Low
+                                    Top</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="hight-checkbox-2" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="hight-checkbox-2"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Mid
+                                    Top</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="hight-checkbox-3" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="hight-checkbox-3"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">High
+                                    Top</label>
+                            </div>
+                        </ul>
+                    </div>
+                    <hr class="mt-8 mb-4 text-gray-300">
+
+                    <div class="">
+                        <span class="text-lg font-semibold">Size</span>
+                        <ul class="">
+                            <div class="grid grid-cols-4 gap-3 mt-4">
+                                <button v-for="size in SIZELIST" :key="size"
+                                    class="border border-gray-300 rounded-md py-2 text-base font-medium hover:bg-gray-100 transition">
+                                    {{ size }}
+                                </button>
+                            </div>
+                        </ul>
+                    </div>
+                    <hr class="mt-8 mb-4 text-gray-300">
+
+                    <div class="">
+                        <span class="text-lg font-semibold">Price</span>
+                        <ul class="">
+                            <div class=" flex items-center pt-2">
+                                <input id="price-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="price-checkbox-1"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">$0 -
+                                    $25</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="price-checkbox-2" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="price-checkbox-2"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">$25 -
+                                    $50</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="price-checkbox-3" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="price-checkbox-3"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">$50 -
+                                    $100</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="price-checkbox-4" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="price-checkbox-4"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">$100 -
+                                    $150</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="price-checkbox-5" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="price-checkbox-5"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Over
+                                    $150</label>
+                            </div>
+                        </ul>
+                    </div>
+                    <hr class="mt-8 mb-4 text-gray-300">
+
+                    <div class="">
+                        <span class="text-lg font-semibold">Width</span>
+                        <ul class="">
+                            <div class=" flex items-center pt-2">
+                                <input id="width-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="width-checkbox-1"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Regular</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="width-checkbox-2" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="width-checkbox-2"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500 ">Wide</label>
+                            </div>
+                            <div class=" flex items-center">
+                                <input id="width-checkbox-3" type="checkbox" value="" name="bordered-checkbox"
+                                    class="w-5 h-5 rounded-sm accent-black">
+                                <label for="width-checkbox-3"
+                                    class="w-full  ms-2 text-lg font-medium cursor-pointer hover:text-gray-500">Extra
+                                    Wide</label>
+                            </div>
+                        </ul>
+                    </div>
+                    <hr class="mt-8 mb-4 text-gray-300">
+                    <!-- ...add more filter sections as needed... -->
+                </div>
+                <div class="p-4 border-t">
+                    <button @click="showMobileFilter = false"
+                        class="w-full bg-black text-white py-2 rounded-4xl text-lg font-semibold">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </transition>
+    </Teleport>
 </template>

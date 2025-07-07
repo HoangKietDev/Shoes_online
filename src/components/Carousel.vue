@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   videos: string[]
@@ -25,13 +26,18 @@ onMounted(() => {
 onUnmounted(() => {
   if (intervalId !== null) clearInterval(intervalId)
 })
+
+const router = useRouter()
+const goToShoe = () => {
+  router.push('/shoe')
+}
 </script>
 
 <template>
   <div class="relative overflow-hidden w-full max-w-screen mx-auto">
     <div class="flex transition-transform duration-700 ease-in-out"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-      <div v-for="(video, index) in videos" :key="index" class="w-full flex-shrink-0">
+      <div v-for="(video, index) in videos" :key="index" class="w-full flex-shrink-0 cursor-pointer" @click="goToShoe">
         <video :src="video" class="w-full h-auto object-cover" autoplay muted loop playsinline></video>
       </div>
     </div>
@@ -56,7 +62,7 @@ onUnmounted(() => {
         <p class="font-semibold">Gear Up: Sport - Active - Outdoor</p>
         <p class="text-3xl md:text-7xl font-extrabold py-2">SPORT</p>
         <p class="text-base text-black">For Every Move - Every Trail - Every Game</p>
-        <a href="" class="px-6 py-2 mt-4 text-white font-medium bg-black rounded-3xl inline-block">Shop</a>
+        <a href="shoe" class="px-6 py-2 mt-4 text-white font-medium bg-black rounded-3xl inline-block">Shop</a>
       </div>
 </template>
 

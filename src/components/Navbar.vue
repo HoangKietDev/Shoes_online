@@ -9,6 +9,7 @@ import Hamburger from './NavComponent/Hamburger.vue'
 
 // Track which dropdown is active (null | string)
 const activeDropdown = ref<string | null>(null)
+const showSearchModal = ref(false)  // Show search modal state
 
 let hideTimeout: ReturnType<typeof setTimeout> | null = null
 
@@ -114,7 +115,8 @@ provide('toggleHam', toggleHam)
         </div>
 
         <div class="flex items-center justify-center gap-2 lg:gap-3 z-10">
-          <div class="flex items-center bg-[#FFFFFF] lg:bg-[#F5F5F5] hover:bg-[#E5E5E5] rounded-full group">
+          <div @click="showSearchModal = true"
+            class="flex items-center bg-[#FFFFFF] lg:bg-[#F5F5F5] hover:bg-[#E5E5E5] rounded-full group">
             <button type="button"
               class="bg-[#FFFFFF] lg:bg-[#F5F5F5] hover:bg-[#CACACB] p-1 rounded-full flex items-center justify-center">
               <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px"
@@ -164,8 +166,8 @@ provide('toggleHam', toggleHam)
   <div class="relative">
     <Transition enter-active-class="transition ease-out duration-500" enter-from-class="opacity-0 -translate-y-4"
       enter-to-class="opacity-100 translate-y-0">
-      <div v-if="activeDropdown === 'new'" @mouseenter="showDropdown('new')"
-        @mouseleave="hideDropdown" class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md">
+      <div v-if="activeDropdown === 'new'" @mouseenter="showDropdown('new')" @mouseleave="hideDropdown"
+        class="dropdown-menu absolute left-0 w-full bg-white z-50 shadow-md">
         <NewAndFeatured />
       </div>
     </Transition>
@@ -194,6 +196,163 @@ provide('toggleHam', toggleHam)
       </div>
     </Transition>
   </div>
+
+  <!-- Modal Search -->
+  <Teleport to="body">
+    <transition enter-active-class="transition-all duration-300 ease-in-out"
+      leave-active-class="transition-all duration-300 ease-in-out" enter-from-class="translate-x-full opacity-0"
+      enter-to-class="translate-x-0 opacity-100" leave-from-class="translate-x-0 opacity-100"
+      leave-to-class="translate-x-full opacity-0">
+      <div v-if="showSearchModal" class="fixed inset-0 z-50 flex flex-col bg-white w-full h-2/5">
+        <div class="flex justify-between items-center p-4 border-b px-8">
+          <a href="/" class="cursor-pointer"><svg class="" xmlns="http://www.w3.org/2000/svg" width="59" height="59"
+              viewBox="135.5 361.38 1000 356.39">
+              <path
+                d="M245.8075 717.62406c-29.79588-1.1837-54.1734-9.3368-73.23459-24.4796-3.63775-2.8928-12.30611-11.5663-15.21427-15.2245-7.72958-9.7193-12.98467-19.1785-16.48977-29.6734-10.7857-32.3061-5.23469-74.6989 15.87753-121.2243 18.0765-39.8316 45.96932-79.3366 94.63252-134.0508 7.16836-8.0511 28.51526-31.5969 28.65302-31.5969.051 0-1.11225 2.0153-2.57652 4.4694-12.65304 21.1938-23.47957 46.158-29.37751 67.7703-9.47448 34.6785-8.33163 64.4387 3.34693 87.5151 8.05611 15.898 21.86731 29.6684 37.3979 37.2806 27.18874 13.3214 66.9948 14.4235 115.60699 3.2245 3.34694-.7755 169.19363-44.801 368.55048-97.8366 199.35686-53.0408 362.49439-96.4029 362.51989-96.3672.056.046-463.16259 198.2599-703.62654 301.0914-38.08158 16.2806-48.26521 20.3928-66.16827 26.6785-45.76525 16.0714-86.76008 23.7398-119.89779 22.4235z" />
+            </svg></a>
+          <button @click="showSearchModal = false" class="text-xl px-2 font-medium cursor-pointer">Cancel</button>
+        </div>
+        <div class="flex-1 flex flex-col items-center justify-start p-8">
+          <input type="text"
+            class="w-full max-w-xl border border-gray-300 rounded-full px-6 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-black"
+            placeholder="What are you looking for?" autofocus />
+          <!-- Bạn có thể thêm gợi ý tìm kiếm hoặc lịch sử ở đây -->
+          <div class="mt-4">
+            <p class="text-gray-600 font-medium mb-4">Recent Searches:</p>
+            <ul class="flex flex-wrap gap-2">
+              <li>
+                <a href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100  rounded-full text-sm transition">
+                  Sneakers
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100  rounded-full text-sm transition">
+                  Running Shoes
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100  rounded-full text-sm transition">
+                  Basketball Shoes
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100 rounded-full text-sm transition">
+                  Jordan 1
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100 rounded-full text-sm transition">
+                  Air Max
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </transition>
+<Teleport to="body">
+  <transition
+    enter-active-class="transition-all duration-300 ease-in-out"
+    leave-active-class="transition-all duration-300 ease-in-out"
+    enter-from-class="translate-x-full opacity-0"
+    enter-to-class="translate-x-0 opacity-100"
+    leave-from-class="translate-x-0 opacity-100"
+    leave-to-class="translate-x-full opacity-0"
+  >
+    <div v-if="showSearchModal">
+      <!-- 👇 Overlay mờ toàn màn hình -->
+      <div
+        class="fixed inset-0 bg-black/30 z-40"
+        @click="showSearchModal = false"
+      ></div>
+      <div
+        class="fixed inset-x-0 top-0 z-50 flex flex-col bg-white w-full h-2/5 shadow-lg"
+      >
+        <div class="flex justify-between items-center p-4 border-b px-8">
+          <a href="/" class="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="59"
+              height="59"
+              viewBox="135.5 361.38 1000 356.39"
+            >
+              <path
+                d="M245.8075 717.62406c-29.79588-1.1837-54.1734-9.3368-73.23459-24.4796-3.63775-2.8928-12.30611-11.5663-15.21427-15.2245-7.72958-9.7193-12.98467-19.1785-16.48977-29.6734-10.7857-32.3061-5.23469-74.6989 15.87753-121.2243 18.0765-39.8316 45.96932-79.3366 94.63252-134.0508 7.16836-8.0511 28.51526-31.5969 28.65302-31.5969.051 0-1.11225 2.0153-2.57652 4.4694-12.65304 21.1938-23.47957 46.158-29.37751 67.7703-9.47448 34.6785-8.33163 64.4387 3.34693 87.5151 8.05611 15.898 21.86731 29.6684 37.3979 37.2806 27.18874 13.3214 66.9948 14.4235 115.60699 3.2245 3.34694-.7755 169.19363-44.801 368.55048-97.8366 199.35686-53.0408 362.49439-96.4029 362.51989-96.3672.056.046-463.16259 198.2599-703.62654 301.0914-38.08158 16.2806-48.26521 20.3928-66.16827 26.6785-45.76525 16.0714-86.76008 23.7398-119.89779 22.4235z"
+              />
+            </svg>
+          </a>
+          <button
+            @click="showSearchModal = false"
+            class="text-xl px-2 font-medium cursor-pointer"
+          >
+            Cancel
+          </button>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center justify-start p-8 overflow-y-auto">
+          <input
+            type="text"
+            class="w-full max-w-xl border border-gray-300 rounded-full px-6 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-black"
+            placeholder="What are you looking for?"
+            autofocus
+          />
+          <!-- Gợi ý tìm kiếm -->
+          <div class="mt-4 w-full max-w-xl">
+            <p class="text-gray-600 font-medium mb-4">Recent Searches:</p>
+            <ul class="flex flex-wrap gap-2">
+              <li>
+                <a
+                  href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100 rounded-full text-sm transition"
+                >
+                  Sneakers
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100 rounded-full text-sm transition"
+                >
+                  Running Shoes
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100 rounded-full text-sm transition"
+                >
+                  Basketball Shoes
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100 rounded-full text-sm transition"
+                >
+                  Jordan 1
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="px-3 py-1 bg-gray-100 hover:bg-blue-100 rounded-full text-sm transition"
+                >
+                  Air Max
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</Teleport>
+  </Teleport>
 </template>
 
 <style scoped></style>

@@ -1,4 +1,4 @@
-
+import DetailProduct from '@/page/DetailProduct.vue'
 import Home1 from '@/page/Home1.vue'
 import Homepage from '@/page/Homepage.vue'
 import ListProduct from '@/page/ListProduct.vue'
@@ -22,7 +22,15 @@ const router = createRouter({
       name: 'shoe',
       component: ListProduct,
     },
+    {
+      path: '/detail/:id',
+      name: 'shoe-detail',
+      component: DetailProduct,
+    },
   ],
+  scrollBehavior() {
+    return { top: 0 } // 🔥 sure scroll on top when router
+  },
 })
 
 export default router

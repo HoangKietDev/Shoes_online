@@ -75,13 +75,15 @@ const scrollRight = () => {
           class="sport-image w-[80vw] md:w-3/10 flex-shrink-0 relative pb-8">
           <img :src="img.src" :alt="img.alt" class="rounded-xl w-full object-cover" />
 
-          <router-link to="/cute" class="absolute bottom-20 left-15 mt-2 text-center text-base  px-4 py-2 text-black font-bold bg-white rounded-3xl border border-gray-300 hover:bg-gray-100 transition-colors">{{ img.title }}</router-link>
+          <router-link to="shoe" class="absolute bottom-20 left-15 mt-2 text-center text-base  px-4 py-2 text-black font-bold bg-white rounded-3xl border border-gray-300 hover:bg-gray-100 transition-colors">{{ img.title }}</router-link>
         </div>
       </template>
       <template v-else>
         <div v-for="(img, idx) in iconImages" :key="idx"
           class="icon-image w-[80vw] md:w-1/3 flex-shrink-0 relative pb-16">
-          <img :src="img" alt="" class="w-full object-cover" />
+          <router-link to="shoe">
+            <img :src="img" alt="" class="w-full object-cover" />
+          </router-link>
         </div>
       </template>
     </div>
