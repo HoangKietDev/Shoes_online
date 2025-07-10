@@ -20,7 +20,6 @@ const shopByIconImages = [
     '/src/assets/images/shoe8.avif',
     '/src/assets/images/shoe9.avif',
     '/src/assets/images/shoe10.avif',
-
 ]
 const shopBySportImages = [
     { src: '/src/assets/images/sport8.avif', title: 'Running', alt: 'Running' },

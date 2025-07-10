@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { CATEGORIES, COLORSLIST, PRODUCTS, SORTOPTIONS, SIZELIST } from '@/constant/productlist';
 import { ref, onMounted, onUnmounted, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 const isScrolled = ref(false)
 const showFilter = ref(true)
@@ -16,6 +17,12 @@ const dropdownStates = reactive({
     size: false,
     sort: false,
 })
+
+const router = useRouter()
+
+function goToDetail(product: any) {
+    router.push(`/detail/${product.id}`)
+}
 
 const toggleDropdown = (key: keyof typeof dropdownStates) => {
     dropdownStates[key] = !dropdownStates[key]
@@ -475,7 +482,8 @@ onUnmounted(() => {
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 transition-all duration-500 ease-in-out w-full"
                 :class="showFilter ? 'w-6/7' : 'w-full'">
-                <div v-for="(product, index) in PRODUCTS" :key="index" class="bg-white h-full cursor-pointer group">
+                <div v-for="(product, index) in PRODUCTS" :key="index" class="bg-white h-full cursor-pointer group"
+                    @click="goToDetail(product)">
                     <div class="aspect-square overflow-hidden">
                         <img :src="product.image" alt="Product Image"
                             class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110" />
@@ -492,6 +500,7 @@ onUnmounted(() => {
         </div>
     </div>
 
+    <hr class="mx-0 md:mx-12 my-8 text-gray-300">
     <!-- Modal filter mobile -->
     <Teleport to="body">
         <transition enter-active-class="transition-all duration-300 ease-in-out"

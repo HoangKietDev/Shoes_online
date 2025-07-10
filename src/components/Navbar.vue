@@ -86,7 +86,7 @@ provide('toggleHam', toggleHam)
           </div>
 
           <li>|</li>
-          <li class="hover:opacity-50"><a href="">Join Us</a></li>
+          <li class="hover:opacity-50"><a href="/signup">Join Us</a></li>
           <li>|</li>
           <li>
             <router-link to="/signin" class="hover:opacity-50 cursor-pointer">Sign In</router-link>
@@ -135,7 +135,7 @@ provide('toggleHam', toggleHam)
                 d="M16.794 3.75c1.324 0 2.568.516 3.504 1.451a4.96 4.96 0 010 7.008L12 20.508l-8.299-8.299a4.96 4.96 0 010-7.007A4.923 4.923 0 017.205 3.75c1.324 0 2.568.516 3.504 1.451l.76.76.531.531.53-.531.76-.76a4.926 4.926 0 013.504-1.451">
               </path>
             </svg></a>
-          <a href="" class="hover:bg-[#CACACB] rounded-full p-1 block person">
+          <a href="/favorite" class="hover:bg-[#CACACB] rounded-full p-1 block person">
             <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px"
               fill="none">
               <title>Favourites</title>
@@ -144,7 +144,7 @@ provide('toggleHam', toggleHam)
               </path>
             </svg>
           </a>
-          <a href="" class="hover:bg-[#CACACB] rounded-full p-1"><svg aria-hidden="true" focusable="false"
+          <a href="cart" class="hover:bg-[#CACACB] rounded-full p-1"><svg aria-hidden="true" focusable="false"
               viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none">
               <title>Bag Items</title>
               <path stroke="currentColor" stroke-width="1.5"
@@ -271,7 +271,7 @@ provide('toggleHam', toggleHam)
         @click="showSearchModal = false"
       ></div>
       <div
-        class="fixed inset-x-0 top-0 z-50 flex flex-col bg-white w-full h-2/5 shadow-lg"
+        class="fixed inset-x-0 top-0 z-50 flex flex-col bg-white w-full h-3/5 md:h-2/5 shadow-lg"
       >
         <div class="flex justify-between items-center p-4 border-b px-8">
           <a href="/" class="cursor-pointer">
