@@ -7,30 +7,9 @@ import LatestSection from '@/components/LastestSection.vue'
 import ImageScroll from '@/components/ImageScroll.vue'
 import Footer from '@/components/Footer.vue'
 import Navbar from '@/components/Navbar.vue'
+import { shopByIconImages, shopBySportImages, videos } from '@/constant/commom'
 
-const videos = ['/src/assets/videos/video1.mp4', '/src/assets/videos/video2.mp4', '/src/assets/videos/video3.mp4']
-const shopByIconImages = [
-    '/src/assets/images/shoe1.avif',
-    '/src/assets/images/shoe2.avif',
-    '/src/assets/images/shoe3.avif',
-    '/src/assets/images/shoe4.avif',
-    '/src/assets/images/shoe5.avif',
-    '/src/assets/images/shoe6.avif',
-    '/src/assets/images/shoe7.avif',
-    '/src/assets/images/shoe8.avif',
-    '/src/assets/images/shoe9.avif',
-    '/src/assets/images/shoe10.avif',
-]
-const shopBySportImages = [
-    { src: '/src/assets/images/sport8.avif', title: 'Running', alt: 'Running' },
-    { src: '/src/assets/images/sport7.avif', title: 'Football', alt: 'Football' },
-    { src: '/src/assets/images/sport6.avif', title: 'Baseketball', alt: 'Baseketball' },
-    { src: '/src/assets/images/sport5.avif', title: 'Training and Gym', alt: 'Gym' },
-    { src: '/src/assets/images/sport1.avif', title: 'Dancing', alt: 'Dancing' },
-    { src: '/src/assets/images/sport2.avif', title: 'Skateboarding', alt: 'Skateboarding' },
-    { src: '/src/assets/images/sport3.avif', title: 'Yoga', alt: 'Yoga' },
-    { src: '/src/assets/images/sport4.avif', title: 'Tennis', alt: 'Tennis' },  
-]
+
 const myMessages = [
     {
         title: 'Free Standard Delivery & 30-Day Free Returns',
