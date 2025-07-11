@@ -75,7 +75,6 @@ function handleSignUp() {
     alert('Passwords do not match!')
     return
   }
-  // Xử lý đăng ký ở đây
   alert(`Email: ${email.value}\nPassword: ${password.value}`)
   router.push('/')
 }

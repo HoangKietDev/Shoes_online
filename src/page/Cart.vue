@@ -4,25 +4,7 @@ import ImageScroll from '@/components/ImageScroll.vue'
 import Footer from '@/components/Footer.vue'
 import Navbar from '@/components/Navbar.vue'
 import CartComponent from '@/components/CartComponent.vue'
-import { shopByIconImages } from '@/constant/commom'
-
-const myMessages = [
-    {
-        title: 'Free Standard Delivery & 30-Day Free Returns',
-        text: 'Shop All Our New Markdowns',
-        link: 'Shop Now'
-    },
-    {
-        title: 'Limited Time: Up to 50% Off Selected Styles',
-        text: 'Browse Offers Now',
-        link: 'Browse Offers'
-    },
-    {
-        title: 'Join Us & Get 10% Off Your First Order',
-        text: 'Sign Up Here',
-        link: 'Sign Up'
-    }
-]
+import { myMessages, shopByIconImages } from '@/constant/commom'
 </script>
 
 <template>

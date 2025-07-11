@@ -91,7 +91,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { PRODUCTS } from '@/constant/productlist' // Đường dẫn tới danh sách sản phẩm của bạn
+import { PRODUCTS } from '@/constant/productlist'
 
 const router = useRouter()
 
@@ -139,9 +139,7 @@ const defaultProduct = ref({
 
 const route = useRoute()
 const productId = route.params.id
-// Tìm sản phẩm theo id (giả sử id là string, nếu là số thì ép kiểu)
 const foundProduct = PRODUCTS.find(p => String(p.id) === String(productId))
-// Lấy object sản phẩm, nếu không có images thì gán images mặc định
 const productData = foundProduct
     ? {
         ...foundProduct,

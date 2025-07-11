@@ -6,51 +6,51 @@
       <ul class="flex space-x-20">
         <li>
           <span class="font-semibold mb-2 inline-block">Featured</span>
-          <p><a href="">New Releases</a></p>
-          <p><a href="">Bestseller</a></p>
-          <p><a href="">Nike Style By</a></p>
-          <p><a href="">Air Max Home</a></p>
-          <p><a href="">Mother's Day Gifts</a></p>
+          <p><a href="shoe">New Releases</a></p>
+          <p><a href="shoe">Bestseller</a></p>
+          <p><a href="shoe">Nike Style By</a></p>
+          <p><a href="shoe">Air Max Home</a></p>
+          <p><a href="shoe">Mother's Day Gifts</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Shoes</span>
-          <p><a href="">All Shoes</a></p>
-          <p><a href="">Lifestyle</a></p>
-          <p><a href="">Jordan</a></p>
-          <p><a href="">Running</a></p>
-          <p><a href="">Training and Gym</a></p>
-          <p><a href="">Football</a></p>
-          <p><a href="">Nike By You</a></p>
+          <p><a href="shoe">All Shoes</a></p>
+          <p><a href="shoe">Lifestyle</a></p>
+          <p><a href="shoe">Jordan</a></p>
+          <p><a href="shoe">Running</a></p>
+          <p><a href="shoe">Training and Gym</a></p>
+          <p><a href="shoe">Football</a></p>
+          <p><a href="shoe">Nike By You</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Clothing</span>
-          <p><a href="">All Clothing</a></p>
-          <p><a href="">Hoodies and Sweatshirts</a></p>
-          <p><a href="">Jackets</a></p>
-          <p><a href="">Trousers</a></p>
-          <p><a href="">Leggings</a></p>
-          <p><a href="">Matching Sets</a></p>
-          <p><a href="">Tops and T-Shirts</a></p>
-          <p><a href="">Shorts</a></p>
-          <p><a href="">Sports Bras</a></p>
+          <p><a href="shoe">All Clothing</a></p>
+          <p><a href="shoe">Hoodies and Sweatshirts</a></p>
+          <p><a href="shoe">Jackets</a></p>
+          <p><a href="shoe">Trousers</a></p>
+          <p><a href="shoe">Leggings</a></p>
+          <p><a href="shoe">Matching Sets</a></p>
+          <p><a href="shoe">Tops and T-Shirts</a></p>
+          <p><a href="shoe">Shorts</a></p>
+          <p><a href="shoe">Sports Bras</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Discover Sport</span>
-          <p><a href="">Training & Gym</a></p>
-          <p><a href="">Running</a></p>
-          <p><a href="">Football</a></p>
-          <p><a href="">Basketball</a></p>
-          <p><a href="">Tennis</a></p>
-          <p><a href="">Dance</a></p>
-          <p><a href="">Yoga</a></p>
-          <p><a href="">Golf</a></p>
+          <p><a href="shoe">Training & Gym</a></p>
+          <p><a href="shoe">Running</a></p>
+          <p><a href="shoe">Football</a></p>
+          <p><a href="shoe">Basketball</a></p>
+          <p><a href="shoe">Tennis</a></p>
+          <p><a href="shoe">Dance</a></p>
+          <p><a href="shoe">Yoga</a></p>
+          <p><a href="shoe">Golf</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Accessories and Equipment</span>
-          <p><a href="">All Accessories and Equipment</a></p>
-          <p><a href="">Bags and Backpacks</a></p>
-          <p><a href="">Headwear</a></p>
-          <p><a href="">Socks</a></p>
+          <p><a href="shoe">All Accessories and Equipment</a></p>
+          <p><a href="shoe">Bags and Backpacks</a></p>
+          <p><a href="shoe">Headwear</a></p>
+          <p><a href="shoe">Socks</a></p>
         </li>
       </ul>
     </div>

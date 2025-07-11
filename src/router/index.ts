@@ -4,7 +4,6 @@ import CheckOut from '@/page/CheckOut.vue'
 import DetailProduct from '@/page/DetailProduct.vue'
 import Favourite from '@/page/Favourite.vue'
 import Home1 from '@/page/Home1.vue'
-import Homepage from '@/page/Homepage.vue'
 import ListProduct from '@/page/ListProduct.vue'
 import SignIn from '@/page/SignIn.vue'
 import SignUp from '@/page/SignUp.vue'
@@ -18,11 +17,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home1,
-    },
-    {
-      path: '/home',
-      name: 'homepage',
-      component: Homepage,
     },
     {
       path: '/signin',

@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto px-6 md:px-12 py-8 md:w-3/4 lg:w-2/3">
-    <!-- Popup đặt hàng thành công -->
+    <!-- Popup success -->
     <transition name="fade">
       <div
         v-if="showSuccess"
@@ -162,7 +162,6 @@ function validateField(field: keyof typeof errors.value) {
 
 function validateAll() {
   let valid = true
-  // Ép kiểu key để TypeScript hiểu đúng
   for (const key of Object.keys(errors.value) as Array<keyof typeof errors.value>) {
     if (!shipping.value[key].trim()) {
       errors.value[key] = true

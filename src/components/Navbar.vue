@@ -265,7 +265,7 @@ provide('toggleHam', toggleHam)
     leave-to-class="translate-x-full opacity-0"
   >
     <div v-if="showSearchModal">
-      <!-- 👇 Overlay mờ toàn màn hình -->
+      <!-- 👇 Overlay -->
       <div
         class="fixed inset-0 bg-black/30 z-40"
         @click="showSearchModal = false"
@@ -301,7 +301,6 @@ provide('toggleHam', toggleHam)
             placeholder="What are you looking for?"
             autofocus
           />
-          <!-- Gợi ý tìm kiếm -->
           <div class="mt-4 w-full max-w-xl">
             <p class="text-gray-600 font-medium mb-4">Recent Searches:</p>
             <ul class="flex flex-wrap gap-2">
@@ -356,5 +355,3 @@ provide('toggleHam', toggleHam)
 </template>
 
 <style scoped></style>
-
-<!-- TODO: Update nav appear when scroll up-->

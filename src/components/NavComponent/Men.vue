@@ -25,14 +25,14 @@
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Clothing</span>
-          <p><a href="clothing">All Clothing</a></p>
-          <p><a href="clothing">Hoodies and Sweatshirts</a></p>
-          <p><a href="clothing">Jackets</a></p>
-          <p><a href="clothing">Trousers and Tights</a></p>
-          <p><a href="clothing">Tracksuits</a></p>
-          <p><a href="clothing">Tops and T-Shirts</a></p>
-          <p><a href="clothing">Shorts</a></p>
-          <p><a href="clothing">Kits and Jerseys</a></p>
+          <p><a href="shoe">All shoe</a></p>
+          <p><a href="shoe">Hoodies and Sweatshirts</a></p>
+          <p><a href="shoe">Jackets</a></p>
+          <p><a href="shoe">Trousers and Tights</a></p>
+          <p><a href="shoe">Tracksuits</a></p>
+          <p><a href="shoe">Tops and T-Shirts</a></p>
+          <p><a href="shoe">Shorts</a></p>
+          <p><a href="shoe">Kits and Jerseys</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Discover Sport</span>

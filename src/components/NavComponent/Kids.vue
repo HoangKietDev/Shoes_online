@@ -6,44 +6,44 @@
       <ul class="flex space-x-20">
         <li>
           <span class="font-semibold mb-2 inline-block">Featured</span>
-          <p><a href="">New Releases</a></p>
-          <p><a href="">Best Sellers</a></p>
-          <p><a href="">Teens</a></p>
-          <p><a href="">EasyOn</a></p>
-          <p><a href="">Cold Weather</a></p>
+          <p><a href="shoe">New Releases</a></p>
+          <p><a href="shoe">Best Sellers</a></p>
+          <p><a href="shoe">Teens</a></p>
+          <p><a href="shoe">EasyOn</a></p>
+          <p><a href="shoe">Cold Weather</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Shoes</span>
-          <p><a href="">All Shoes</a></p>
-          <p><a href="">Lifestyle</a></p>
-          <p><a href="">Jordan</a></p>
-          <p><a href="">Football</a></p>
-          <p><a href="">Running</a></p>
-          <p><a href="">Basketball</a></p>
+          <p><a href="shoe">All Shoes</a></p>
+          <p><a href="shoe">Lifestyle</a></p>
+          <p><a href="shoe">Jordan</a></p>
+          <p><a href="shoe">Football</a></p>
+          <p><a href="shoe">Running</a></p>
+          <p><a href="shoe">Basketball</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Clothing</span>
-          <p><a href="">All Clothing</a></p>
-          <p><a href="">Hoodies and Sweatshirts</a></p>
-          <p><a href="">Jackets</a></p>
-          <p><a href="">Trousers and Leggings</a></p>
-          <p><a href="">Tracksuits</a></p>
-          <p><a href="">Matching Sets</a></p>
-          <p><a href="">Tops and T-Shirts</a></p>
-          <p><a href="">Shorts</a></p>
-          <p><a href="">Kits and Jerseys</a></p>
+          <p><a href="shoe">All Clothing</a></p>
+          <p><a href="shoe">Hoodies and Sweatshirts</a></p>
+          <p><a href="shoe">Jackets</a></p>
+          <p><a href="shoe">Trousers and Leggings</a></p>
+          <p><a href="shoe">Tracksuits</a></p>
+          <p><a href="shoe">Matching Sets</a></p>
+          <p><a href="shoe">Tops and T-Shirts</a></p>
+          <p><a href="shoe">Shorts</a></p>
+          <p><a href="shoe">Kits and Jerseys</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Kids by age</span>
-          <p><a href="">Older Kids (7 - 15 years)</a></p>
-          <p><a href="">Younger Kids (3 - 7 years)</a></p>
-          <p><a href="">Baby & Toddler (0 - 3 years)</a></p>
+          <p><a href="shoe">Older Kids (7 - 15 years)</a></p>
+          <p><a href="shoe">Younger Kids (3 - 7 years)</a></p>
+          <p><a href="shoe">Baby & Toddler (0 - 3 years)</a></p>
         </li>
         <li>
           <span class="font-semibold mb-2 inline-block">Accessories and Equipment</span>
-          <p><a href="">All Accessories and Equipment</a></p>
-          <p><a href="">Bags and Backpacks</a></p>
-          <p><a href="">Socks</a></p>
+          <p><a href="shoe">All Accessories and Equipment</a></p>
+          <p><a href="shoe">Bags and Backpacks</a></p>
+          <p><a href="shoe">Socks</a></p>
         </li>
       </ul>
     </div>

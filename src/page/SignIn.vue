@@ -46,7 +46,6 @@ const password = ref('')
 const router = useRouter()
 
 function handleLogin() {
-    // Xử lý đăng nhập ở đây
     alert(`Email: ${email.value}\nPassword: ${password.value}`)
     router.push('/')
 }

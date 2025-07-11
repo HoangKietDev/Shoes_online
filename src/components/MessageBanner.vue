@@ -43,7 +43,7 @@ onUnmounted(() => {
         <p class="text-base text-black">
           {{ props.messages[currentMessageIndex].title }}
         </p>
-        <a href="#" class="text-xs font-bold text-black cursor-pointer underline">
+        <a :href="props.messages[currentMessageIndex].link" class="text-xs font-bold text-black cursor-pointer underline">
           {{ props.messages[currentMessageIndex]?.text }}
         </a>
       </div>
